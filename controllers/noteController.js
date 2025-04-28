@@ -1,5 +1,3 @@
-// noteController.js
-
 export const getNotes = (db) => (req, res) => {
   db.notes.find({}, (err, notes) => {
     if (err)
@@ -34,9 +32,9 @@ export const updateNote = (db) => (req, res) => {
   }
 
   db.notes.update(
-    { _id: id }, // Letar efter anteckningen baserat på dess _id
-    { $set: { title, text, modifiedAt: new Date() } }, // Uppdaterar anteckningens titel, text och modifierat datum
-    {}, // Alla alternativ är tomma här
+    { _id: id },
+    { $set: { title, text, modifiedAt: new Date() } },
+    {},
     (err, numUpdated) => {
       if (err)
         return res.status(500).json({ message: "Server error", error: err });
