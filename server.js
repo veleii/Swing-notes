@@ -10,8 +10,8 @@ import YAML from "yamljs";
 import path from "path";
 import { fileURLToPath } from "url";
 
-dotenv.config(); // Ladda miljövariabler
-const app = express(); // Definiera app här, innan användning
+dotenv.config();
+const app = express();
 
 // Middleware
 app.use(express.json());
@@ -37,7 +37,6 @@ const swaggerDocument = YAML.load(
 // Definiera swagger-routen korrekt
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
-// Start server
 const port = process.env.PORT || 5000;
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);

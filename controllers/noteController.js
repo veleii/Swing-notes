@@ -8,6 +8,12 @@ export const getNotes = (db) => (req, res) => {
 
 export const createNote = (db) => (req, res) => {
   const { title, text } = req.body;
+  if (title.length > 50) {
+    return res.status(400).json({ message: "Titeln får max vara 50 tecken" });
+  }
+  if (text.length > 300) {
+    return res.status(400).json({ message: "Texten får max vara 300 tecken" });
+  }
   const newNote = {
     title,
     text,

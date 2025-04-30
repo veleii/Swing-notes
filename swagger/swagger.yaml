@@ -19,6 +19,7 @@ security:
 paths:
   /api/user/signup:
     post:
+      tags: ["User"]
       summary: Skapa ett nytt användarkonto
       requestBody:
         required: true
@@ -41,6 +42,7 @@ paths:
 
   /api/user/login:
     post:
+      tags: ["User"]
       summary: Logga in en användare
       requestBody:
         required: true
@@ -72,6 +74,7 @@ paths:
 
   /api/notes:
     post:
+      tags: ["Notes"]
       summary: Skapa en ny anteckning
       security:
         - bearerAuth: []
@@ -109,6 +112,7 @@ paths:
         "500":
           description: Serverfel
     get:
+      tags: ["Notes"]
       summary: Hämta alla anteckningar
       security:
         - bearerAuth: []
@@ -135,6 +139,7 @@ paths:
 
   /api/notes/{id}:
     put:
+      tags: ["Notes"]
       summary: Uppdatera en anteckning
       security:
         - bearerAuth: []
@@ -166,6 +171,7 @@ paths:
         "500":
           description: Serverfel
     delete:
+      tags: ["Notes"]
       summary: Ta bort en anteckning
       security:
         - bearerAuth: []
@@ -186,6 +192,7 @@ paths:
 
   /api/notes/search:
     get:
+      tags: ["Notes"]
       summary: Söka bland anteckningar
       security:
         - bearerAuth: []
