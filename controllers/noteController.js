@@ -64,15 +64,19 @@ export const deleteNote = (db) => (req, res) => {
 };
 
 export const searchNotes = (db) => (req, res) => {
-  const { title } = req.query;
+  const { id } = req.query;
 
-  if (!title) {
-    return res.status(400).json({ message: "Title is required for search" });
+  if (!id) {
+    return res.status(400).json({ message: "ID is required for search" });
   }
 
-  db.notes.find({ title: new RegExp(title, "i") }, (err, notes) => {
-    if (err)
+  db.notes.findOne({ _id: id }, (err, note) => {
+    if (err) {
       return res.status(500).json({ message: "Server error", error: err });
-    res.json(notes);
+    }
+    if (!note) {
+      return res.status(404).json({ message: "Note not found" });
+    }
+    res.json(note);
   });
 };
